@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <title>Calculate House Insurance</title>
+    <meta charset='utf-8'>
+    <meta name='description' content=''>
+    <meta name='keywords' content=''>
+    <meta name='author' content=''>
+    <meta name='robots' content='all'>
+    <link href='/favicon.png' rel='shortcut icon' type='image/png'>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <link rel="stylesheet" type="text/css" href="responsive.css">
+    
+    <script type="text/javascript" src="scriptFile.js"></script>
+    
+  </head>
+  <body onload="insurance.reset();">
+  <div id="container">
+  <h1>Calculate the Cost of Your House Insurance</h1>
+  <form name="insurance" action="" method="post">
+  <fieldset>
+  <legend id="question1">Do you own the property or rent it from someone?</legend>
+  <input type="radio" name="ownProperty" id="ownProperty1" onclick="q1('50')">                                                   
+                                                 <label for="ownProperty1">I own and live in it</label><br>
+  <input style="float:left;" type="radio" name="ownProperty" id="ownProperty2" onclick="q1('25')">                               
+                                                 <label style="margin-left:25px;display:block;" for="ownProperty2">I own it and it's a Summer House</label><br>
+  <input style="position:relative;top:-19px;float:left;" type="radio" name="ownProperty" id="ownProperty3" onclick="q1('5')">    
+                                                 <label style="position:relative;top:-19px;margin-left:25px;display:block;" for="ownProperty3">I rent it from someone</label>
+  </fieldset>          <!--REFERENCE http://stackoverflow.com/questions/838904/how-do-you-stop-radiobuttonlist-label-text-from-wrapping-under-the-button-->
+  
+  
+  <fieldset>
+  <legend id="question2">Type of property</legend>
+  <select name="typeOfProperty" onchange="q2(document.insurance.typeOfProperty.value)">            
+    <option value="-2">Please select an option</option>
+    <option value="100">Detached</option>
+    <option value="50">Semi-Detached</option>
+    <option value="65">Bungalow</option>
+    <option value="40">Terraced</option>
+    <option value="10">Apartment</option>   
+  </select>
+  </fieldset>
+    
+  
+  <fieldset>
+  <legend id="question3">Years Old</legend>
+  <select name="yearsOld" onchange="q3(document.insurance.yearsOld.value)">    
+    <option value="-3">Please select an option</option>
+    <option value="50">&lt;1</option>
+    <option value="75">&gt;1 &lt;5</option>
+    <option value="90">&gt;5 &lt;15</option>
+    <option value="100">&gt;15</option>
+  </select>
+  </fieldset>
+  
+  
+  <fieldset>
+  <legend id="question4">House Alarm</legend>
+  <input type="radio" name="alarm" id="alarm1" onclick="q4('100')">   <label for="alarm1">No</label><br>
+  <input type="radio" name="alarm" id="alarm2" onclick="q4('40')">    <label for="alarm2">Yes - Standard Alarm</label><br>
+  <input type="radio" name="alarm" id="alarm3" onclick="q4('10')">    <label for="alarm3">Yes - Monitored Alarm</label>
+  </fieldset>
+  
+  
+  <fieldset>
+  <legend id="question5">At Lease Two Smoke Detectors Fitted</legend>
+  <input type="radio" name="smoke" id="smoke1" onclick="q5(50)">    <label for="smoke1">No</label><br>
+  <input type="radio" name="smoke" id="smoke2" onclick="q5(10)">    <label for="smoke2">Yes</label>
+  </fieldset>
+  
+  
+  <fieldset>
+  <legend id="question6">Location</legend>
+  <select name="location" onchange="q6(document.insurance.location.value)">    
+    <option value="-6">Please select an option</option>
+    <option value="50">Dublin</option>
+    <option value="30">Cork, Limerick, Kerry</option>
+    <option value="10">West of Ireland</option>
+  </select>
+  </fieldset>
+  
+  
+  <fieldset>
+  <legend id="question7">Claims Free For</legend>
+  <select name="claimsFreeFor" onchange="q7(document.insurance.claimsFreeFor.value)">   
+    <option value="-7">Please select an option</option>
+    <option value="100">1 year</option>
+    <option value="80">2 years</option>
+    <option value="60">3 years</option>
+    <option value="40">4 years</option>
+    <option value="20">&gt;=5 years</option>
+  </select>
+  </fieldset>
+  
+  
+  <fieldset>
+  <legend id="question8">Buildings Cover</legend>
+  &euro;<input type="text" name="buildingsCover" onkeyup="q8(document.insurance.buildingsCover.value)"/>
+        <span style="color:#ff0000;" id="errorMessage"></span>
+  </fieldset>
+  
+  
+  <fieldset>
+  <legend id="question9">Contents Cover</legend>
+  <select name="contentsCover" onchange="q9(document.insurance.contentsCover.value)"> 
+    <option value="-9">Please select an option</option>
+    <option value="50">20,000</option>
+    <option value="70">40,000</option>  
+    <option value="90">60,000</option>
+    <option value="110">80,000</option>
+    <option value="150">&gt;80,000</option>
+  </select>  
+  </fieldset>
+  
+  
+  <fieldset>
+  <legend id="question10">Claims Excess</legend>
+  <input type="radio" name="claimsExcess" id="claimsExcess1" onclick="q10('30')">    <label for="claimsExcess1">&euro;250</label><br>
+  <input type="radio" name="claimsExcess" id="claimsExcess2" onclick="q10('50')">    <label for="claimsExcess2">&euro;500</label><br>
+  <input type="radio" name="claimsExcess" id="claimsExcess3" onclick="q10('70')">    <label for="claimsExcess3">&euro;1,000</label>
+  </fieldset>
+  
+  <fieldset class="resultField">
+  <legend>Click for Result</legend>
+  <input type="button" value="View Result" onclick="printScreen()">
+  <input type="button" value="Reset" onclick="resetTheFormCompletely()">
+  <textarea name="result"></textarea>
+  </fieldset>
+  
+  
+  </form>
+  </div>
+  
+
+  </body>
+</html>
